@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+	<title>Todo list</title>
+	
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+
+ <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+ 
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ 
+ <link rel="stylesheet" href="@routes.Assets.at("/stylesheets/main.css")">
+ @helper.requireJs(core = routes.Assets.at("/vendor/requirejs/require.js").url, module = routes.Assets.at("/javascripts/main.js").url)
+
+
+</head>
+<body >
+	<form action="/test?test=uuuuuuuuuuuu" method="POST">
+		<input type="text" name="test2">
+		<input type="submit" value="GO">
+	</form>
+	<div id="todoapp" ng-controller="ToDoCtrl" class="container">
+		<div id="addtask" class="row row-first">
+		  <div class="col s4">
+			  <input type="text" name="add-task" class="task-name" placeholder="Add your task here" ng-model="taskName" ng-keyup="addTask(event)"/>
+      </div>
+      <div class="col s4 ">
+  			<select ng-model="priority" class="browser-default">
+  				<option value='normal'>Normal</option>
+  				<option value='medium'>Medium</option>
+  				<option value='high'>High</option>
+  			</select>
+			</div>
+			
+   
+		
+     <div class="col s1">
+      <a class="btn-floating waves-effect waves-light teal"  ng-click="addTask(event)" ng-show="taskName"><i class="material-icons">add</i></a>
+		</div>
+	
+  
+		</div>
+		
+		<div class="row" ng-show="taskName">
+      <input type="checkbox" class="filled-in"  name="checkbox" ng-model="hasDescription" id="has-description"/>
+    	<label for="has-description"  class="completed-{{task.completed}}">Description</label>
+		</div>
+		
+		<div class="row"  ng-show="hasDescription">
+		  <div class="input-field col s12">
+        <textarea id="task-description" class="materialize-textarea" ng-model='taskDescription'></textarea>
+      </div>
+		</div>
+		
+		<div class="row" ng-show="tasklist.length==0">
+		  <h3 class='teal-text text-lighten-4'>No tasks for today...</h3> 
+		  </div>
+		<div class="row" ng-show="tasklist.length>0">
+  		<ul id="todo-list" class="collapsible" watch>
+  		  <li class="collapsible-header no-action">
+  		    <div class="row">
+  		      <div class="col s8 ">
+  		    <label ng-click="order('name')" class="clickable">Name<span ng-show="orderTarget=='name'" class="order-target " ng-class="{reverse:reverse}"></span></label>
+		      	</div>
+		      	<div class="col s4 ">
+		      	    <label ng-click="order('priority')" class="clickable">Priority<span ng-show="orderTarget=='priority'" class="order-target" ng-class="{reverse:!reverse}"></span></label>
+	      	  </div>
+	      	  </div>
+	      </li>
+
+  			<li list-item ng-repeat="task in tasklist|orderBy:orderTarget:reverse track by $index" class="collection-item"  ng-mouseover="task.showdelete = true" ng-mouseleave="task.showdelete = false" >
+  			  </li>
+  		</ul>
+		</div>
+		  
+		<div >
+		  <a ng-click="saveList()" class="waves-effect waves-light btn">Save</a>
+		  
+		   <a class="waves-effect waves-teal btn-flat" ng-click="clear()" ng-show="tasklist.length>0">Clear</a>
+		   <span ng-show="tasklist.length>0">{{tasklist|completed}}/{{tasklist.length}}</span>
+		</div>
+	</div>
+	
+</body>
+
+</html>

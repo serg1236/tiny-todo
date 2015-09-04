@@ -1,0 +1,39 @@
+i.material-icons{
+  cursor: pointer;
+}
+
+.priority.medium{
+  color: #ffeb3b;
+}
+
+.priority.high{
+  color: #f44336;
+}
+
+.completed-true{
+  text-decoration: line-through;
+  
+}
+
+.no-margin{
+  margin: 0px;
+}
+
+.row-first{
+  margin-top:20px;
+}
+
+.order-target.reverse:after{
+  content:' \25BC';
+}
+
+.order-target:after{
+  content:' \25B2';
+}
+
+.no-action{
+  cursor: default;
+}
+.clickable{
+  cursor: pointer;
+}
