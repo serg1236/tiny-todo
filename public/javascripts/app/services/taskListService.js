@@ -20,10 +20,10 @@ define(['./module'],function(services){
 
 		var configPromise = getConfigs();
 
-		function save(list){
-			var sList = JSON.stringify(list)
-			var params ={
-				list:sList
+		function save(userLogin, list){
+			var data ={
+				login:userLogin, 
+				tasks:list
 			};
 			return configPromise.then(
 				function(resolve){
@@ -33,7 +33,7 @@ define(['./module'],function(services){
 					return $http({
 						url:url,
 						method:'POST',
-						params: params}).then(function(response){
+						data: data}).then(function(response){
 					
 						if(response.status=='200'){
 							return response.data;

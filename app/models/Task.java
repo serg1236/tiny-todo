@@ -5,10 +5,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import play.db.ebean.Model;
 
 @SuppressWarnings("serial")
 @Entity
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Task extends Model{
 	
 	@Id
@@ -16,11 +19,11 @@ public class Task extends Model{
 	private String name;
 	private String description;
 	private String priority;
-	private boolean isCompleted;
-	
+	private boolean completed;
 	@ManyToOne
 	@JoinColumn(name="user_id", nullable=false)
 	private User user;
+
 	
 	public int getId() {
 		return id;
@@ -47,10 +50,10 @@ public class Task extends Model{
 		this.priority = priority;
 	}
 	public boolean isCompleted() {
-		return isCompleted;
+		return completed;
 	}
 	public void setCompleted(boolean isCompleted) {
-		this.isCompleted = isCompleted;
+		this.completed = isCompleted;
 	}
 
 }

@@ -8,7 +8,7 @@ create table task (
   name                      varchar(255),
   description               varchar(255),
   priority                  varchar(255),
-  is_completed              boolean,
+  completed                 boolean,
   user_id                   integer,
   constraint pk_task primary key (id))
 ;

@@ -27,7 +27,7 @@ define(['./module'],function(controllers){
 		$scope.saveList=function(){
 			console.log('Saving...');
 			$cookies.putObject('todolist',$scope.tasklist,{'expires':'Fri, 31 Dec 9999 23:59:59 GMT','path':'/'});
-			taskListService.save($scope.tasklist).then(function(response){
+			taskListService.save("serg1236",$scope.tasklist).then(function(response){
 				Materialize.toast(response, 1000);
 			});
 		}

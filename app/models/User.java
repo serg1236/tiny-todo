@@ -7,10 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import play.db.ebean.Model;
 
 @SuppressWarnings("serial")
 @Entity
+@JsonIgnoreProperties
 public class User extends Model{
 	
 	
@@ -50,4 +53,6 @@ public class User extends Model{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public static Finder<Long,User> find = new Finder<Long,User>(Long.class, User.class); 
 }
